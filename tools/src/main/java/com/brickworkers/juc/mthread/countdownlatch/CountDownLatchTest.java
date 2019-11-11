@@ -12,7 +12,6 @@ public class CountDownLatchTest {
 
     public static void main(String[] args) {
         MockService mockService = new MockService();
-
         // 开启三个线程去请求Mock服务
         new Thread(() -> {
             mockService.doService();
@@ -26,8 +25,6 @@ public class CountDownLatchTest {
             mockService.doService();
             cdl.countDown();
         }, "T3").start();
-
-
         try {
             cdl.await();
             System.out.println("请求全部完成，剩余CountDown :" + cdl.getCount());
